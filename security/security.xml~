@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<openerp>
+<data noupdate="0">
+    <record id="clinic_encoder_user" model="res.groups">
+        <field name="name">Clinic Encoder</field>
+    </record>
+    <record id="group_sale_salesman" model="res.groups">
+            <field name="name">User</field>
+        </record>
+        <record id="group_sale_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="implied_ids" eval="[(4, ref('group_sale_salesman'))]"/>
+        </record>
+
+    <record id="menu_patient_encoding" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6,0,[ref('clinic_encoder_user')])]"></field>
+    </record>
+   
+
+</data>
+</openerp>

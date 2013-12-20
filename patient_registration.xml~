@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+    <!--<menuitem name="Patient" icon="terp-project" id="patient_menu" parent="hospital_mgmt.hospital_management_menu" sequence="1"/> -->
+ 
+ 
+
+  <record model="ir.ui.view" id="list_of_patient_search_view">
+        <field name="name">Patients</field>
+        <field name="model">res.partner</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Patients">
+                <field name="ref" string="Case No."/>
+                <field name="whole_name" string="Patient Name"/>
+            </search>
+        </field>
+    </record>
+    
+  
+    <record id="list_of_patient_tree_view" model="ir.ui.view">
+            <field name="name">res.partnerpatients.tree</field>
+            <field name="model">res.partner</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Patients">
+                <field name="ref" string="Case No."/>
+                <field name="whole_name"/>
+                <field name="gender"/>
+                <field name="status"/>
+                <field name="nationality"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="list_of_patient_form_view">
+        <field name="name">res.partnerpatients.form</field>
+        <field name="model">res.partner</field>
+        <field name="priority" eval="1" />
+        <field name="arch" type="xml" >
+            <form string="Patients" version= "7.0">
+               <sheet>
+                <notebook colspan="6">
+                    <page string="Patient Info">
+                        <group colspan="6" col="6">
+                           <group>  
+                           <field name="image" widget="image" class="oe_left oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>   
+                           <field name="ref" string="Patient No." required="1"/>
+                           <field name="customer" string="Patient"/>   
+                           <field name="gender"/> 
+                           </group>
+                           <group> 
+                                                        
+                            <field name="name" string="Lastname"/>
+                            <field name="fname"/>
+                            <field name="mname"/>
+                            <field name="phone_no"/>
+                            <field name="status"/>
+                            </group>
+                           </group>
+
+                          <group>
+                            <group>  
+                            <field name="birthdate"/>
+                            <field name="age"/>
+                            <field name="birthplace"/>
+                            <field name="nationality"/>
+                            <field name="religion"/>
+                            <field name="educ_attain"/>
+                            <field name="occupation"/>
+                           </group>
+                            <group>
+                            <field name="street"/>
+                            <field name="city" string="Town/City"/>
+                            <field name="state_id" string="Province"/>
+                            <field name="country_id"/>                              
+                            </group>
+                          </group>
+                    </page>
+                    <page string="Business Info">
+                        <group colspan="6" >
+                            <field name="bus_name"/>
+                            <field name="bus_address"/>
+                            <field name="bus_phone_no"/>
+                            
+                        </group>
+                    </page>
+
+                    <page string="Other Info">
+                        <group colspan="6" >
+                            <field name="father" context="{'form_view_ref' : 'view_ref_custom.res_partner_form_view_ref_custom', 'tree_view_ref' : 'view_ref_custom.res_partner_tree_view_ref_custom'}"/>
+                            <field name="mother" context="{'form_view_ref' : 'view_ref_custom.res_partner_form_view_ref_custom', 'tree_view_ref' : 'view_ref_custom.res_partner_tree_view_ref_custom'}"/>
+                            <field name="spouse" context="{'form_view_ref' : 'view_ref_custom.res_partner_form_view_ref_custom', 'tree_view_ref' : 'view_ref_custom.res_partner_tree_view_ref_custom'}"/>
+                         
+                            <group colspan="6" string="Spouse's Info">
+                                <field name="spouse_address"/>
+                                <field name="spouse_empl"/>
+                                <field name="spouse_empl_address"/>
+                                <field name="spouse_empl_phone_no"/>
+                            
+                            </group>
+                        </group>
+                    </page>
+
+
+                    <page string="Connection">
+                        <group colspan="6" >
+                            <field name="openmrs_number" readonly="1"/>
+                            <field name="for_synchronization" readonly="1"/>
+                        </group>
+                    </page>
+                </notebook>
+              </sheet>
+            </form>
+        </field>
+    </record>
+        
+
+
+       
+        <record model="ir.actions.act_window" id="action_list_patients">
+            <field name="name">Patient Form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="list_of_patient_search_view"/>
+            <field name="domain">[('customer','=',1)]</field>
+            <field name="context">{"active_test": False}</field>
+       </record>
+       
+       <record id="action_partnerpatient_tree_view" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="list_of_patient_tree_view"/>
+            <field name="act_window_id" ref="action_list_patients"/>
+        </record>
+
+       <record id="action_partnerpatient_form_view" model="ir.actions.act_window.view" >
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="list_of_patient_form_view"/>
+            <field name="act_window_id" ref="action_list_patients"/>
+       </record>
+      
+ <menuitem name="Patients" icon="terp-project" id="patient_enrolment_menu" parent="openmrs_config.patient_menu" action="action_list_patients"  sequence="1"/>
+<menuitem name="Patients" parent="patient_enrolment_menu" id="patient_listing" action="action_list_patients" sequence="1"/> 
+
+
+</data>
+</openerp>
+

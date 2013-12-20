@@ -1,0 +1,16 @@
+{
+	'name' : 'eHospital Patient Registration Module',
+	'version' : '0.1',
+	'author' : 'Titus Kivite @ Intellisoft',
+	'website' : 'http://www.intellisoftkenya.com/',
+	'category' : 'Generic Modules/Others',
+	'depends' : ['base','sale','openmrs_config'],
+	'description' : 'This module integrates openerp and openmrs. Customers created on openerp are saved in openmrs as patients ',
+	'demo_xml' : [],
+	'data' : ['patient_registration.xml','security/security.xml','security/ir.model.access.csv',],
+	'active': False,
+	'installable': True,
+}
+
+
+

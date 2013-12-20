@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_clinic_encoder_user,res.partner,model_res_partner,clinic_encoder_user,1,1,1,0
+access_res_partner_sale_user,res.partner.sale.user,base.model_res_partner,base.group_sale_salesman,1,0,0,0
+access_res_partner_sale_manager,res.partner.sale.manager,base.model_res_partner,base.group_sale_manager,1,1,1,0
+access_res_partner_bank_type_user,res.partner.bank.type.user,base.model_res_partner_bank_type,base.group_sale_salesman,1,0,0,0
+access_res_partner_bank_type_field_user,res.partner.bank.type.field.user,base.model_res_partner_bank_type_field,base.group_sale_salesman,1,0,0,0
+access_account_invoice_tax_salesman,account_invoice_tax salesman,account.model_account_invoice_tax,base.group_sale_salesman,1,1,1,0
+access_account_invoice_salesman,account_invoice salesman,account.model_account_invoice,base.group_sale_salesman,1,1,1,0
+access_account_invoice_manager,account_invoice manager,account.model_account_invoice,base.group_sale_manager,1,1,1,1
+access_account_invoice_line_salesman,account_invoice.line salesman,account.model_account_invoice_line,base.group_sale_salesman,1,1,1,0
+access_account_payment_term_salesman,account_payment_term salesman,account.model_account_payment_term,base.group_sale_salesman,1,0,0,0
+access_account_analytic_account_salesman,account_analytic_account salesman,analytic.model_account_analytic_account,base.group_sale_salesman,1,1,1,0
+access_account_account_salesman,account_account salesman,account.model_account_account,base.group_sale_salesman,1,0,0,0
+
